@@ -1,10 +1,18 @@
 <script >
+import { store } from '../store'
 export default {
 
     data() {
         return {
-
+            store,
         }
+    },
+    methods: {
+        showCards() {
+            this.store.showCards = true;
+            this.store.showButton = false;
+        },
+
     }
 }
 </script>
@@ -13,7 +21,7 @@ export default {
     <header>
         <h1>Benvenuto nel mio portale di yu-gi-oh</h1>
 
-        <div id="btn">
+        <div id="btn" v-show="store.showButton" @click="showCards()">
             <button><b>clicca qui per vedere le mie carte</b></button>
         </div>
     </header>
