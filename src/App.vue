@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div id="background">
     <AppHeader></AppHeader>
 
     <AppMain></AppMain>
@@ -27,4 +27,9 @@ export default {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+#background {
+  background-image: url("https://images5.alphacoders.com/321/321887.jpg");
+  height: 1000px;
+}
+</style>
