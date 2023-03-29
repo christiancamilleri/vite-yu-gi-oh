@@ -1,5 +1,6 @@
 <script >
 import Card from './Card.vue';
+import SearchCard from './SearchCard.vue'
 import { store } from '../store.js';
 import axios from 'axios';
 
@@ -11,26 +12,52 @@ export default {
     },
 
     methods: {
+        searchBar() {
+            console.log(this.store.APIcall + "&fname=" + this.store.cardName)
 
+            let newAPI = this.store.APIcall + '&fname=' + this.store.cardName
+
+            console.log(newAPI);
+
+
+
+            if (this.store.cardName != "") {
+
+                axios.get(newAPI).then((res) => {
+                    console.log(res.data.data)
+
+                    this.store.cards = res.data.data
+                })
+            } else {
+                alert("inserisci il nome di una carta")
+            }
+
+            this.store.cardName = ""
+
+        },
     },
 
     components: {
         Card,
+        SearchCard,
     },
 
     created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0').then((res) => {
+        axios.get(this.store.APIcall).then((res) => {
 
             this.store.cards = res.data.data
 
             console.log(this.store.cards)
         })
     }
-
 }
 </script>
 
 <template>
+    <div>
+        <SearchCard v-show="store.showSearch" @search="searchBar()"></SearchCard>
+    </div>
+
     <div class="container">
         <Card v-for="card in store.cards" :singleCard="card"></Card>
     </div>

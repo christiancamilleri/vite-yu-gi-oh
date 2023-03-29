@@ -12,7 +12,7 @@ export default {
 <template>
     <div>
         <hr>
-        prova Footer
+
     </div>
 </template>
 

@@ -32,5 +32,6 @@ export default {
   background-image: url("https://images5.alphacoders.com/321/321887.jpg");
   min-height: 1000px;
 
+
 }
 </style>
