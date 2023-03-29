@@ -12,6 +12,7 @@ export default {
             this.store.showCards = true;
             this.store.showButton = false;
             this.store.showSearch = true;
+
         },
 
     }

@@ -19,15 +19,20 @@ export default {
 
             console.log(newAPI);
 
+            if (this.store.typeOfCard != "") {
+                newAPI += `&type=${this.store.typeOfCard}`
+            }
 
 
-            if (this.store.cardName != "") {
+
+            if (this.store.cardName != "" || this.store.typeOfCard != "") {
 
                 axios.get(newAPI).then((res) => {
                     console.log(res.data.data)
 
                     this.store.cards = res.data.data
                 })
+
             } else {
                 alert("inserisci il nome di una carta")
             }
@@ -56,6 +61,9 @@ export default {
 <template>
     <div>
         <SearchCard v-show="store.showSearch" @search="searchBar()"></SearchCard>
+        <div v-show="store.showCounter" id="counter">
+            <span>Numero carte trovate: <b>{{ this.store.cards.length }}</b></span>
+        </div>
     </div>
 
     <div class="container">
@@ -64,6 +72,13 @@ export default {
 </template>
 
 <style lang="scss">
+#counter {
+    color: black;
+
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
